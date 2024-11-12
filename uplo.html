@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Final Year Student Data Form</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    /* General Body Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f0f9; /* Light pink background */
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #6a4c9c; /* Pale purple */
+      margin-bottom: 30px;
+    }
+
+    /* Form Container */
+    .student-form {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h3 {
+      color: #ff7ab8; /* Light pink */
+      border-bottom: 2px solid #ff7ab8;
+      padding-bottom: 10px;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    /* Form Row Layout */
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .form-row .input-container {
+      width: 48%;
+    }
+
+    /* Input Fields */
+    .input-field, select, input[type="file"] {
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 16px;
+      background-color: #f9f0f9; /* Light pink background for inputs */
+    }
+
+    .input-field:focus, select:focus {
+      border-color: #ff7ab8; /* Light pink focus border */
+      outline: none;
+    }
+
+    /* Submit Button */
+    button {
+      background-color: #ff7ab8; /* Light pink button */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s;
+      width: 100%;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #ff3e81; /* Darker pink on hover */
+    }
+
+    /* Image and Resume Preview */
+    .image-preview, .resume-preview {
+      margin-top: 10px;
+      max-width: 150px;
+      border: 1px solid #ddd;
+      padding: 5px;
+      border-radius: 8px;
+    }
+
+    /* Student List Section */
+    .student-list {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .student-list table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .student-list th, .student-list td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    .student-list th {
+      background-color: #f4f4f9;
+      color: #6a4c9c; /* Pale purple */
+    }
+    .student-list tr:nth-child(even) {
+      background-color: #f9f0f9; /* Light pink background for even rows */
+    }
+
+    /* Media Query for Mobile */
+    @media (max-width: 768px) {
+      .form-row {
+        flex-direction: column;
+      }
+      .form-row .input-container {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body ng-app="studentApp" ng-controller="StudentController">
+
+  <h1>Final Year Student Data Form</h1>
+  <form ng-submit="submitForm()">
+    <div class="student-form">
+      <h3>Student {{ currentStudentIndex + 1 }}</h3>
+      
+      <div class="form-row">
+        <div class="input-container">
+          <label for="name">Name</label>
+          <input type="text" id="name" class="input-field" ng-model="students[currentStudentIndex].name" required>
+        </div>
+        <div class="input-container">
+          <label for="age">Age</label>
+          <input type="number" id="age" class="input-field" ng-model="students[currentStudentIndex].age" required>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="input-container">
+          <label for="branch">Branch</label>
+          <select id="branch" ng-model="students[currentStudentIndex].branch" required>
+            <option value="" disabled selected>Select Branch</option>
+            <option value="AIML">AIML</option>
+            <option value="CS">CS</option>
+            <option value="CSBS">CSBS</option>
+          </select>
+        </div>
+        <div class="input-container">
+          <label for="section">Section</label>
+          <input type="text" id="section" class="input-field" ng-model="students[currentStudentIndex].section" required>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="input-container">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="input-field" ng-model="students[currentStudentIndex].email" required>
+        </div>
+        <div class="input-container">
+          <label for="address">Address</label>
+          <input type="text" id="address" class="input-field" ng-model="students[currentStudentIndex].address" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="input-container">
+          <label for="skills">Skills</label>
+          <input type="text" id="skills" class="input-field" ng-model="students[currentStudentIndex].skills" required>
+        </div>
+        <div class="input-container">
+          <label for="interests">Interests</label>
+          <input type="text" id="interests" class="input-field" ng-model="students[currentStudentIndex].interests" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="input-container">
+          <label for="achievements">Achievements</label>
+          <input type="text" id="achievements" class="input-field" ng-model="students[currentStudentIndex].achievements" required>
+        </div>
+        <div class="input-container">
+          <label for="cgpa">CGPA</label>
+          <input type="number" id="cgpa" class="input-field" ng-model="students[currentStudentIndex].cgpa" step="0.01" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="input-container">
+          <label for="linkedin">LinkedIn Profile URL</label>
+          <input type="url" id="linkedin" class="input-field" ng-model="students[currentStudentIndex].linkedin">
+        </div>
+      </div>
+
+      <!-- Upload Fields for Photo and Resume -->
+      <div class="form-row">
+        <div>
+          <label for="photo-upload">Upload Photo</label>
+          <input type="file" id="photo-upload" accept="image/*" onchange="angular.element(this).scope().previewImage(this, 'photo')">
+          <img ng-if="students[currentStudentIndex].photoSrc" ng-src="{{students[currentStudentIndex].photoSrc}}" alt="Photo Preview" class="image-preview">
+        </div>
+        <div>
+          <label for="resume-upload">Upload Resume</label>
+          <input type="file" id="resume-upload" accept=".pdf,.doc,.docx" onchange="angular.element(this).scope().previewImage(this, 'resume')">
+          <a ng-if="students[currentStudentIndex].resumeSrc" href="{{students[currentStudentIndex].resumeSrc}}" target="_blank" class="resume-preview">View Resume</a>
+        </div>
+      </div>
+
+      <button type="submit">{{ currentStudentIndex < students.length - 1 ? 'Next' : 'Submit' }}</button>
+    </div>
+  </form>
+
+  <!-- Display Students by Branch -->
+  <div class="student-list">
+    <h3>AIML Students</h3>
+    <table>
+      <tr><th>Name</th><th>Age</th><th>Email</th></tr>
+      <tr ng-repeat="student in students | filter:{branch:'AIML'}">
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.email }}</td>
+      </tr>
+    </table>
+
+    <h3>CS Students</h3>
+    <table>
+      <tr><th>Name</th><th>Age</th><th>Email</th></tr>
+      <tr ng-repeat="student in students | filter:{branch:'CS'}">
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.email }}</td>
+      </tr>
+    </table>
+
+    <h3>CSBS Students</h3>
+    <table>
+      <tr><th>Name</th><th>Age</th><th>Email</th></tr>
+      <tr ng-repeat="student in students | filter:{branch:'CSBS'}">
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.email }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    angular.module('studentApp', [])
+      .controller('StudentController', function($scope) {
+        $scope.students = [{
+          name: '',
+          age: '',
+          branch: '',
+          section: '',
+          email: '',
+          address: '',
+          skills: '',
+          interests: '',
+          achievements: '',
+          cgpa: '',
+          linkedin: '',
+          photoSrc: '',
+          resumeSrc: ''
+        }];
+        $scope.currentStudentIndex = 0;
+
+        $scope.submitForm = function() {
+          if ($scope.currentStudentIndex < $scope.students.length - 1) {
+            $scope.currentStudentIndex++;
+          } else {
+            // Submit all students
+            alert("Form Submitted!");
+          }
+        };
+
+        $scope.previewImage = function(input, type) {
+          var file = input.files[0];
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            if (type === 'photo') {
+              $scope.students[$scope.currentStudentIndex].photoSrc = e.target.result;
+            } else if (type === 'resume') {
+              $scope.students[$scope.currentStudentIndex].resumeSrc = e.target.result;
+            }
+            $scope.$apply();
+          };
+          reader.readAsDataURL(file);
+        };
+      });
+  </script>
+</body>
+</html>

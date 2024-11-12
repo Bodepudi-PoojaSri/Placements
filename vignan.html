@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Year Student Profiles</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f3f9; /* Pale pink background */
+            color: #4b4b4b;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #D1A1D3; /* Light purple background */
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Logo Section */
+        .logo img {
+            width: 150px; /* Adjust the size of your logo */
+            height: auto;
+        }
+
+        .header-title {
+            font-size: 1.3em;
+            color: #fff;
+        }
+
+        .branches, .upload {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .branch {
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            color: #6A4C9C; /* Purple shade */
+            border-radius: 30px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .branch:hover {
+            background-color: #ffccf7;
+            transform: translateY(-2px);
+        }
+
+        .upload-button {
+            background-color: #6A4C9C; /* Purple button */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+
+        .upload-button:hover {
+            background-color: #D1A1D3;
+            transform: translateY(-2px);
+        }
+
+        .student-details {
+            padding: 30px 20px;
+            display: none;
+            margin-top: 20px;
+        }
+
+        .student-details h2 {
+            text-align: center;
+            font-size: 2em;
+            color: #6A4C9C;
+            margin-bottom: 30px;
+        }
+
+        .student {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .student:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .student img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .student-info {
+            flex: 1;
+        }
+
+        .student h3 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #6A4C9C;
+        }
+
+        .student p {
+            font-size: 1em;
+            margin: 5px 0;
+            color: #6A4C9C;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .resume-button, .linkedin-button {
+            background-color: #6A4C9C; /* Purple button */
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+
+        .resume-button:hover, .linkedin-button:hover {
+            background-color: #D1A1D3;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .branches {
+                margin-top: 10px;
+            }
+
+            .student {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .student img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <!-- Logo Section with Image -->
+    <div class="logo">
+        <img src="path/to/your-logo.png" alt="Logo">
+    </div>
+    <div class="header-title">Student Profiles</div>
+    <div class="branches">
+        <div class="branch" onclick="showBranch('aiml')">AIML</div>
+        <div class="branch" onclick="showBranch('cs')">CS</div>
+        <div class="branch" onclick="showBranch('csbs')">CSBS</div>
+    </div>
+    <div class="upload">
+        <!-- Upload Button with Link to upload.html -->
+        <a href="uplo.html">
+            <button class="upload-button">Upload</button>
+        </a>
+    </div>
+</header>
+
+<div id="aiml" class="student-details">
+    <h2>AIML Students</h2>
+    <div class="student">
+        <img src="path/to/student-image1.jpg" alt="John Doe">
+        <div class="student-info">
+            <h3>Name: John Doe</h3>
+            <p>Roll Number: AIML1234</p>
+            <p>Email: johndoe@example.com</p>
+            <p>Phone: +123 456 7890</p>
+            <p>CGPA: 8.5</p>
+            <p>Skills: Python, Machine Learning, Data Analysis</p>
+            <p>Soft Skills: Problem-solving, Teamwork</p>
+            <p>Certifications: Python Certification, Data Science with Python</p>
+            <p>Projects: Real-Time Gesture Recognition System</p>
+            <p>Internship: Data Science Intern at XYZ Corp.</p>
+            <p>Placement: Software Engineer at ABC Tech</p>
+            <div class="button-container">
+                <a href="https://linkedin.com/in/johndoe" class="linkedin-button" target="_blank">LinkedIn Profile</a>
+                <button class="resume-button" onclick="viewResume('John Doe')">View Resume</button>
+            </div>
+        </div>
+    </div>
+    <!-- Add more student profiles here for AIML -->
+</div>
+
+<div id="cs" class="student-details">
+    <h2>CS Students</h2>
+    <div class="student">
+        <img src="path/to/student-image2.jpg" alt="Jane Smith">
+        <div class="student-info">
+            <h3>Name: Jane Smith</h3>
+            <p>Roll Number: CS5678</p>
+            <p>Email: janesmith@example.com</p>
+            <p>Phone: +123 456 7891</p>
+            <p>CGPA: 9.0</p>
+            <p>Skills: Java, C++, Web Development</p>
+            <p>Soft Skills: Communication, Critical Thinking</p>
+            <p>Certifications: Java Developer Certification</p>
+            <p>Projects: E-commerce Website</p>
+            <p>Internship: Software Developer Intern at LMN Solutions</p>
+            <p>Placement: Full-Stack Developer at DEF Corp</p>
+            <div class="button-container">
+                <a href="https://linkedin.com/in/janesmith" class="linkedin-button" target="_blank">LinkedIn Profile</a>
+                <button class="resume-button" onclick="viewResume('Jane Smith')">View Resume</button>
+            </div>
+        </div>
+    </div>
+    <!-- Add more student profiles here for CS -->
+</div>
+
+<div id="csbs" class="student-details">
+    <h2>CSBS Students</h2>
+    <div class="student">
+        <img src="path/to/student-image3.jpg" alt="Alice Johnson">
+        <div class="student-info">
+            <h3>Name: Alice Johnson</h3>
+            <p>Roll Number: CSBS9101</p>
+            <p>Email: alicejohnson@example.com</p>
+            <p>Phone: +123 456 7892</p>
+            <p>CGPA: 8.7</p>
+            <p>Skills: SQL, Web Development, Cloud Computing</p>
+            <p>Soft Skills: Leadership, Time Management</p>
+            <p>Certifications: AWS Certified Developer</p>
+            <p>Projects: Cloud-Based Inventory Management</p>
+            <p>Internship: Cloud Engineer Intern at XYZ Cloud</p>
+            <p>Placement: Cloud Solutions Architect at GHI Inc.</p>
+            <div class="button-container">
+                <a href="https://linkedin.com/in/alicejohnson" class="linkedin-button" target="_blank">LinkedIn Profile</a>
+                <button class="resume-button" onclick="viewResume('Alice Johnson')">View Resume</button>
+            </div>
+        </div>
+    </div>
+    <!-- Add more student profiles here for CSBS -->
+</div>
+
+<script>
+    function showBranch(branch) {
+        document.querySelectorAll('.student-details').forEach(function(detail) {
+            detail.style.display = 'none';
+        });
+        document.getElementById(branch).style.display = 'block';
+    }
+
+    function viewResume(studentName) {
+        alert('Viewing resume of ' + studentName);
+    }
+</script>
+
+</body>
+</html>
